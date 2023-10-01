@@ -1,25 +1,39 @@
-var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+namespace Kestrel.TCI.Host.Web;
 
-builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-
-var app = builder.Build();
-
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+public class Program
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+    public static void Main(string[] arguments)
+    {
+        var builder = WebApplication.CreateBuilder(arguments);
+        ConfigureBuilder(builder);
+        var app = builder.Build();
+        app.Run();
+    }
+
+
+    private static void ConfigureBuilder(WebApplicationBuilder builder)
+    {
+        builder.Services.AddControllers();
+        builder.Services.AddEndpointsApiExplorer();
+        builder.Services.AddSwaggerGen();
+    }
+
+
+    private static void ConfigureApp(WebApplication app)
+    {
+        if (app.Environment.IsDevelopment())
+        {
+            app.UseSwagger();
+            app.UseSwaggerUI();
+        }
+
+        app.UseHttpsRedirection();
+
+        app.UseAuthorization();
+
+        app.MapControllers();
+
+        app.Run();
+    }
 }
-
-app.UseHttpsRedirection();
-
-app.UseAuthorization();
-
-app.MapControllers();
-
-app.Run();

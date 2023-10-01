@@ -1,6 +1,6 @@
 ﻿namespace Kestrel.TCI.Integration.Twitch;
 
-public class Class1
+public class TwitchService
 {
-
+    
 }

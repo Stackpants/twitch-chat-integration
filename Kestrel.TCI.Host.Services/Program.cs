@@ -25,5 +25,7 @@ public class Program
 
     public static void ConfigureConsole(HostBuilderContext context, IServiceCollection services)
     {
+        // background services
+        services.AddHostedService<TwitchBackgroundWorker>();
     }
 }
