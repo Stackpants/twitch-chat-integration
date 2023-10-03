@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Kestrel.TCI.Application;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
 
@@ -25,6 +26,8 @@ public class Program
 
     public static void ConfigureConsole(HostBuilderContext context, IServiceCollection services)
     {
+        services.RegisterDependencies();
+        services.RegisterApplicationDependencies();
         // background services
         services.AddHostedService<TwitchBackgroundWorker>();
     }

@@ -12,4 +12,9 @@
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="7.0.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Kestrel.TCI.Application\Kestrel.TCI.Application.csproj" />
+    <ProjectReference Include="..\Kestrel.TCI.Integration.Twitch\Kestrel.TCI.Integration.Twitch.csproj" />
+  </ItemGroup>
+
 </Project>
